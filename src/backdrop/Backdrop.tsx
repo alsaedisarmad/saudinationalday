@@ -71,7 +71,7 @@ export function Backdrop() {
     const u = { res: U('uRes'), time: U('uTime'), mouse: U('uMouse'), top: U('uTop'), mid: U('uMid'), bot: U('uBot'), ridge: U('uRidge'), haze: U('uHaze'), glow: U('uGlow'), horizon: U('uHorizon'), stars: U('uStars'), moon: U('uMoon'), ridges: U('uRidges'), dust: U('uDust'), thread: U('uThread'), threadY: U('uThreadY'), grain: U('uGrain'), pulse: U('uPulse'), bright: U('uBright') }
 
     let cur = fromGrade(grades[backdrop.grade])
-    let quality = mode === 'mobile' ? 0.7 : mode === 'smartboard' ? 0.75 : 1 // معامل الدقة الداخلية
+    let quality = mode === 'mobile' ? 0.5 : mode === 'smartboard' ? 0.75 : 1 // معامل الدقة الداخلية
     let raf = 0
     let last = performance.now()
     let t = 0
@@ -80,7 +80,7 @@ export function Backdrop() {
     let mx = 0
     let my = 0
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, mode === 'mobile' ? 1.5 : 2)
+      const dpr = Math.min(window.devicePixelRatio || 1, mode === 'mobile' ? 1.25 : 2)
       const cap = 1080 / Math.max(canvas.clientHeight, 1) // سقف داخلي ≈ 1080p (السبورات 4K ضعيفة الرسوميات)
       const s = Math.max(0.4, Math.min(dpr, cap) * quality)
       canvas.width = Math.max(2, Math.floor(canvas.clientWidth * s))
@@ -127,7 +127,7 @@ export function Backdrop() {
       gl.uniform3fv(u.top, cur.top); gl.uniform3fv(u.mid, cur.mid); gl.uniform3fv(u.bot, cur.bot)
       gl.uniform3fv(u.ridge, cur.ridge); gl.uniform3fv(u.haze, cur.haze); gl.uniform3fv(u.glow, cur.glow)
       gl.uniform1f(u.horizon, cur.horizon); gl.uniform1f(u.stars, cur.stars); gl.uniform1f(u.moon, cur.moon)
-      gl.uniform1f(u.ridges, cur.ridges); gl.uniform1f(u.dust, cur.dust)
+      gl.uniform1f(u.ridges, mode === 'mobile' ? Math.min(cur.ridges, 2) : cur.ridges); gl.uniform1f(u.dust, cur.dust)
       gl.uniform1f(u.thread, backdrop.thread); gl.uniform1f(u.threadY, backdrop.threadY ?? cur.horizon)
       gl.uniform1f(u.grain, 0.05); gl.uniform1f(u.pulse, backdrop.pulse); gl.uniform1f(u.bright, backdrop.bright)
       gl.drawArrays(gl.TRIANGLES, 0, 3)
@@ -135,7 +135,7 @@ export function Backdrop() {
       if (!red) {
         if (dt > 0.026) slow++
         else slow = Math.max(0, slow - 1)
-        if (slow > 45 && quality > 0.45) { quality *= 0.85; slow = 0; resize() }
+        if (slow > 18 && quality > 0.3) { quality *= 0.8; slow = 0; resize() }
       }
     }
     raf = requestAnimationFrame(frame)

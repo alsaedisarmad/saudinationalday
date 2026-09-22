@@ -7,6 +7,7 @@ import { hallById, type HallId } from '../exhibition/halls'
 import { discoverIds } from '../exhibition/discovery'
 import { useStore } from '../session/store'
 import { audio } from '../audio/engine'
+import { clipPlayer } from '../audio/clip'
 import { ErrorBoundary } from './ErrorBoundary'
 
 const H: Partial<Record<HallId, LazyExoticComponent<ComponentType>>> = {
@@ -84,7 +85,7 @@ export function Stage() {
     audio.ambient(h.grade)
   }, [shown]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => { audio.setEnabled(store.sound); audio.ambient(hallById(shown).grade) }, [store.sound]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { audio.setEnabled(store.sound); audio.ambient(hallById(shown).grade); clipPlayer.setMuted(!store.sound) }, [store.sound]) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { document.documentElement.classList.toggle('reduce-motion', store.reducedMotion) }, [store.reducedMotion])
 
   // الروابط العميقة والرجوع في المتصفح

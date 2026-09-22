@@ -4,6 +4,7 @@ import { backdrop } from '../backdrop/Backdrop'
 import { useSession } from '../session/session'
 import { useStore } from '../session/store'
 import { audio } from '../audio/engine'
+import { clipPlayer } from '../audio/clip'
 import { identity } from '../content/values'
 import logoSrc from '../assets/brand/logo.webp'
 
@@ -59,6 +60,7 @@ export default function Gate() {
     audio.setEnabled(true)
     audio.chime(4)
     audio.whoosh(1.8)
+    clipPlayer.playOnce()
     session.goto('courtyard')
   }
 

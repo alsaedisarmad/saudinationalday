@@ -45,7 +45,7 @@ function Verses({ ids }: { ids: string[] }) {
             <p className="tv__quran" lang="ar">{v.text} ۝{toIndic(v.ayah)}</p>
             {t && visible(t) && (
               <details>
-                <summary>تفسير السعدي — «تيسير الكريم الرحمن» (كما أرسله فريق المشروع)</summary>
+                <summary>تفسير السعدي — «تيسير الكريم الرحمن»</summary>
                 {t.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
               </details>
             )}

@@ -6,3 +6,5 @@ dist-artifact
 npm-debug.log*
 .DS_Store
 src/assets/murals
+
+.vercel

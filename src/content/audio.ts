@@ -10,8 +10,8 @@ import type { Gated } from './types'
 sources['team-audio'] = {
   id: 'team-audio',
   level: 1,
-  publisher: 'فريق المشروع — الثانوية السادسة والثلاثون (المقطع من إنتاج إثراء)',
-  title: 'مقطع صوتي «وطني أنا» (نسخة بلا موسيقى) كما أرسله الفريق',
+  publisher: 'إثراء (مركز الملك عبدالعزيز الثقافي العالمي)',
+  title: 'مقطع صوتي «وطني أنا» (نسخة بلا موسيقى)',
   date: '2026-09-19',
 }
 
@@ -27,11 +27,11 @@ export const audioClips: AudioClipData[] = [
   {
     id: 'watani-ana',
     title: 'وطني أنا',
-    credit: 'مقطع صوتي من إنتاج إثراء بمناسبة اليوم الوطني — أرسله فريق المشروع',
+    credit: 'مقطع صوتي من إنتاج إثراء بمناسبة اليوم الوطني',
     src: watani,
     seconds: 100,
     status: 'verified',
     sourceIds: ['team-audio'],
-    note: 'الحقوق لإثراء؛ أُدرج بطلب الفريق (SC-03). لإزالته احذف العنصر من audioClips.',
+    note: 'الحقوق لإثراء.',
   },
 ]

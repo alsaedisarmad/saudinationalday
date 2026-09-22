@@ -2,8 +2,8 @@ import type { Source } from './types'
 
 /** سجل المصادر المركزي — كل عنصر يشير إليه بـ sourceId (research/01_SOURCE_INDEX.md للتفصيل) */
 export const sources: Record<string, Source> = {
-  'team-text': { id: 'team-text', level: 1, publisher: 'فريق المشروع — الثانوية السادسة والثلاثون', title: 'مادة الفريق: الآيات وتفسير «تيسير الكريم الرحمن» (السعدي) كما أُرسلت', date: '2026-09-19' },
-  'team-video-security': { id: 'team-video-security', level: 1, publisher: 'فريق المشروع', title: 'مقطع توعوي عن الأمن الوطني (شرائح) — نص مستخرج من الفيديو', date: '2026-09-18' },
+  'team-text': { id: 'team-text', level: 1, publisher: 'الثانوية السادسة والثلاثون', title: 'الآيات وتفسير «تيسير الكريم الرحمن» (السعدي)', date: '2026-09-19' },
+  'team-video-security': { id: 'team-video-security', level: 1, publisher: 'الثانوية السادسة والثلاثون', title: 'مقطع توعوي عن الأمن الوطني (شرائح)', date: '2026-09-18' },
   'quran-tanzil': { id: 'quran-tanzil', level: 3, publisher: 'Tanzil Project (عبر alquran.cloud)', title: 'نص المصحف العثماني — Tanzil Uthmani', url: 'https://api.alquran.cloud/', accessed: '2026-09-19' },
   'quran-com': { id: 'quran-com', level: 3, publisher: 'Quran.com (Quran Foundation)', title: 'Quran.com API v4 — text_uthmani', url: 'https://api.quran.com/api/v4/', accessed: '2026-09-19' },
   'spa-identity-2026': { id: 'spa-identity-2026', level: 2, publisher: 'وكالة الأنباء السعودية (واس)', title: 'رئيس هيئة الترفيه يعلن إطلاق هوية اليوم الوطني لعام 2026 تحت شعار «عزّنا بطبعنا»', url: 'https://www.spa.gov.sa/N2642350', date: '2026-07-27', accessed: '2026-09-19' },
@@ -71,7 +71,7 @@ export const sourceLevelLabel: Record<number, string> = {
 }
 
 /** المجلة المدرسية «من قيمنا إلى رؤيتنا» — نصوص الجداريات (content/murals.ts) نُقلت من صور صفحاتها */
-sources['team-magazine'] = { id: 'team-magazine', level: 1, publisher: 'فريق المشروع — الثانوية السادسة والثلاثون', title: 'مجلة «من قيمنا إلى رؤيتنا» (14 صفحة)', date: '2026-09-18' }
+sources['team-magazine'] = { id: 'team-magazine', level: 1, publisher: 'الثانوية السادسة والثلاثون', title: 'مجلة «من قيمنا إلى رؤيتنا» (14 صفحة)', date: '2026-09-18' }
 
 /** مصادر «طريق الحكاية» (research/_parts/timeline_facts.md — قُرئت 2026-09-19) */
 const pathSources: Source[] = [

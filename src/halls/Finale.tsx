@@ -53,8 +53,6 @@ export default function Finale() {
 
   state.current.dots = d.dots
   useEffect(() => { backdrop.grade = 'finale'; backdrop.thread = 0; backdrop.threadY = 0.3 }, [])
-  // يفتح مقطع «وطني أنا» ويشغّله تلقائيًا فور وصول الزائر إلى ختام الرحلة (الصوت مُتاح أصلًا منذ إيماءة «ابدأ الرحلة» في البوابة)
-  useEffect(() => { if (done && clip) setClipOpen(true) }, [done, clip])
 
   const dots = useMemo<Dot[]>(() => mapGeometry.points96.map(([x, y], i) => ({ sx: rnd(), sy: rnd(), tx: x, ty: y, delay: (i / N) * 0.55 + rnd() * 0.15, ph: rnd() * Math.PI * 2 })), [])
 
@@ -242,7 +240,7 @@ export default function Finale() {
         </div>
       </div>
       <Layer open={clipOpen} onClose={() => setClipOpen(false)} title={clip?.title ?? ''} kicker="مقطع صوتي">
-        {clip && <AudioClip clip={clip} autoPlay />}
+        {clip && <AudioClip clip={clip} />}
       </Layer>
       <Layer open={cardOpen} onClose={() => setCardOpen(false)} title="بطاقة المستكشف" kicker="لقطة رحلتك" width="wide">
         <ExplorerCard stamps={stampsEarned} stampsTotal={stamps.length} />

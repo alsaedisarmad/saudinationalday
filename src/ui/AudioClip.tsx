@@ -1,47 +1,46 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { AudioClipData } from '../content/audio'
 import { SourceLine } from './parts'
 import { toIndic } from '../content/quran'
-import { audio } from '../audio/engine'
+import { clipPlayer } from '../audio/clip'
 
 const fmt = (t: number) => `${toIndic(Math.floor(t / 60))}:${toIndic(String(Math.floor(t % 60)).padStart(2, '0'))}`
 
-/** مشغّل مقطع صوتي: يبدأ تلقائيًا إن طُلب (بعد إيماءة الزائر في البوابة)، ويخفض بيئة القاعة أثناء التشغيل ويعيدها بعده. */
-export function AudioClip({ clip, autoPlay = false }: { clip: AudioClipData; autoPlay?: boolean }) {
-  const el = useRef<HTMLAudioElement>(null)
-  const [playing, setPlaying] = useState(false)
+/** يعرض حالة مقطع «وطني أنا» المشغَّل تلقائيًا من البوابة (audio/clip.ts) ويتيح إيقافه/استئنافه. */
+export function AudioClip({ clip }: { clip: AudioClipData }) {
+  const [playing, setPlaying] = useState(clipPlayer.playing)
   const [t, setT] = useState(0)
   const [dur, setDur] = useState(clip.seconds)
   const [err, setErr] = useState(false)
 
-  useEffect(() => () => { el.current?.pause(); audio.duck(false) }, [])
   useEffect(() => {
-    if (!autoPlay) return
-    el.current?.play().catch(() => setErr(true))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const el = clipPlayer.element
+    const onTime = () => setT(el.currentTime)
+    const onMeta = () => Number.isFinite(el.duration) && setDur(el.duration)
+    const onErr = () => setErr(true)
+    const onPlay = () => setPlaying(true)
+    const onPause = () => setPlaying(false)
+    el.addEventListener('timeupdate', onTime)
+    el.addEventListener('loadedmetadata', onMeta)
+    el.addEventListener('error', onErr)
+    el.addEventListener('play', onPlay)
+    el.addEventListener('pause', onPause)
+    el.addEventListener('ended', onPause)
+    setPlaying(!el.paused)
+    setT(el.currentTime)
+    return () => {
+      el.removeEventListener('timeupdate', onTime)
+      el.removeEventListener('loadedmetadata', onMeta)
+      el.removeEventListener('error', onErr)
+      el.removeEventListener('play', onPlay)
+      el.removeEventListener('pause', onPause)
+      el.removeEventListener('ended', onPause)
+    }
   }, [])
-
-  const toggle = async () => {
-    const a = el.current
-    if (!a) return
-    if (playing) { a.pause(); return }
-    try { await a.play() } catch { setErr(true) }
-  }
 
   return (
     <div className="clip" role="group" aria-label={`مقطع صوتي: ${clip.title}`}>
-      <audio
-        ref={el}
-        src={clip.src}
-        preload="none"
-        onPlay={() => { setPlaying(true); audio.duck(true) }}
-        onPause={() => { setPlaying(false); audio.duck(false) }}
-        onEnded={() => { setPlaying(false); setT(0); audio.duck(false) }}
-        onTimeUpdate={(e) => setT(e.currentTarget.currentTime)}
-        onLoadedMetadata={(e) => Number.isFinite(e.currentTarget.duration) && setDur(e.currentTarget.duration)}
-        onError={() => setErr(true)}
-      />
-      <button className="btn btn--gold clip__btn" onClick={toggle} aria-pressed={playing} aria-label={playing ? `إيقاف ${clip.title}` : `استمع: ${clip.title}`}>
+      <button className="btn btn--gold clip__btn" onClick={() => clipPlayer.toggle()} aria-pressed={playing} aria-label={playing ? `إيقاف ${clip.title}` : `استمع: ${clip.title}`}>
         <svg viewBox="0 0 24 24" width="1.5em" height="1.5em" aria-hidden fill="none" stroke="currentColor" strokeWidth="1.5">{playing ? <path d="M8 5v14M16 5v14" /> : <path d="M8 5l11 7-11 7V5Z" />}</svg>
         <span>{playing ? 'إيقاف' : `استمع: ${clip.title}`}</span>
       </button>

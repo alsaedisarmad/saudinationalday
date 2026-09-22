@@ -49,7 +49,7 @@ export function Hud({ hall }: { hall: HallId }) {
       </div>
 
       {!inGate && <Meter count={d.count} total={d.total} dots={d.dots} />}
-      {isReviewMode() && <div className="review-flag" role="note">وضع المراجعة — المواد «قيد المراجعة/التوثيق» ظاهرة للفريق فقط</div>}
+      {isReviewMode() && <div className="review-flag" role="note">وضع المراجعة — المواد «قيد المراجعة/التوثيق» ظاهرة في هذا الوضع فقط</div>}
 
       <Layer open={open} onClose={() => setOpen(false)} title="استكشف المعرض" kicker="الخيط يصل القاعات">
         <ol className="thread-nav">
@@ -65,7 +65,7 @@ export function Hud({ hall }: { hall: HallId }) {
             </li>
           ))}
         </ol>
-        <p className="label" style={{ marginTop: 'var(--s4)' }}>ملاحظة: {halls.filter((h) => !h.ready()).length ? 'قاعات أخرى تظهر هنا حين تكتمل مواد فريق العمل.' : 'كل القاعات متاحة.'}</p>
+        {!halls.filter((h) => !h.ready()).length && <p className="label" style={{ marginTop: 'var(--s4)' }}>كل القاعات متاحة.</p>}
       </Layer>
 
       <style>{css}</style>

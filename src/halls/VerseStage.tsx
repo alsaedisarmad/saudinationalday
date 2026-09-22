@@ -74,7 +74,7 @@ export function VerseStage({ ids, index, onIndex, footer }: { ids: string[]; ind
       {footer}
 
       <Layer open={open} onClose={() => setOpen(false)} title="اكتشف المعنى" kicker={`${refLabel(v)} — تفسير السعدي`} width="wide">
-        <p className="label" style={{ marginBottom: 'var(--s3)' }}>«{t.work}» للشيخ {t.author} رحمه الله — كما أرسله فريق المشروع دون تعديل.</p>
+        <p className="label" style={{ marginBottom: 'var(--s3)' }}>«{t.work}» للشيخ {t.author} رحمه الله.</p>
         <LongText paragraphs={t.paragraphs} />
         <SourceLine ids={t.sourceIds} label="مادة التفسير" />
         <p className="label" style={{ marginTop: 'var(--s2)' }}>{sources['team-text'].title}</p>

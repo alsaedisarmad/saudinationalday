@@ -27,7 +27,7 @@ export const techCredits: { label: string; text: string }[] = [
   { label: 'الخطوط', text: 'Amiri وAmiri Quran وReem Kufi وIBM Plex Sans Arabic — برخصة SIL Open Font License' },
   { label: 'خريطة المناطق', text: 'حدود geoBoundaries، © مساهمو OpenStreetMap (ODbL) — للتوضيح فقط وليست حدودًا رسمية' },
   { label: 'نصّ الآيات', text: 'المصحف العثماني — مشروع Tanzil، وقورن بنص Quran.com (كلمة بكلمة)' },
-  { label: 'التفسير', text: '«تيسير الكريم الرحمن» للشيخ عبدالرحمن بن ناصر السعدي رحمه الله — كما أرسله فريق المشروع' },
+  { label: 'التفسير', text: '«تيسير الكريم الرحمن» للشيخ عبدالرحمن بن ناصر السعدي رحمه الله' },
   { label: 'القيم الست', text: 'هوية اليوم الوطني ٢٠٢٦ «عزّنا بطبعنا» — الهيئة العامة للترفيه (وكالة الأنباء السعودية، ٢٧ يوليو ٢٠٢٦)' },
 ]
 
