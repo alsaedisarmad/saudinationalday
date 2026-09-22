@@ -19,7 +19,7 @@ export const values: Value[] = [
 export const identity = {
   slogan: 'عزّنا بطبعنا',
   title: 'السعودية... حكاية وطن',
-  dateLabel: '٢٣ سبتمبر ٢٠٢٦',
+  dateLabel: '٢٣ سبتمبر',
   attribution: 'اليوم الوطني السعودي — هوية «عزّنا بطبعنا» أعلنتها الهيئة العامة للترفيه',
   sourceIds: ['spa-identity-2026'],
 }

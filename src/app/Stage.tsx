@@ -62,13 +62,14 @@ export function Stage() {
     if (reduce) {
       tl.set(v, { opacity: 0, display: 'block' }).to(v, { opacity: 1, duration: 0.18 }).add(swap).to(v, { opacity: 0, duration: 0.2 }).set(v, { display: 'none' }).add(() => { running.current = false })
     } else {
+      const f = useStore.getState().mode === 'mobile' ? 0.7 : 1 // انتقال أخف وأسرع قليلًا على الجوال
       tl.set(v, { opacity: 0, display: 'block' })
         .set(l, { scaleX: 0, opacity: 1 })
-        .to(l, { scaleX: 1, duration: 0.75, ease: 'power2.inOut' })
-        .to(v, { opacity: 1, duration: 0.5, ease: 'power1.in' }, '-=0.3')
+        .to(l, { scaleX: 1, duration: 0.75 * f, ease: 'power2.inOut' })
+        .to(v, { opacity: 1, duration: 0.5 * f, ease: 'power1.in' }, `-=${0.3 * f}`)
         .add(swap)
-        .to(v, { opacity: 0, duration: 0.9, ease: 'power1.out', delay: 0.15 })
-        .to(l, { opacity: 0, duration: 0.5 }, '<')
+        .to(v, { opacity: 0, duration: 0.9 * f, ease: 'power1.out', delay: 0.15 * f })
+        .to(l, { opacity: 0, duration: 0.5 * f }, '<')
         .set(v, { display: 'none' })
         .add(() => { running.current = false })
     }

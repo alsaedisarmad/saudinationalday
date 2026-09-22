@@ -333,8 +333,8 @@ const recognition: Station = {
 const today: Station = {
   id: 'today',
   year: 2026,
-  yearLabel: '٢٠٢٦م',
-  short: '٢٠٢٦',
+  yearLabel: '٢٣ سبتمبر',
+  short: '٢٣/٩',
   dateLabel: '٢٣ سبتمبر',
   era: 'present',
   title: 'اليوم: اليوم الوطني',

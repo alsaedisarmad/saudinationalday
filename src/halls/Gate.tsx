@@ -39,16 +39,19 @@ export default function Gate() {
       return () => window.removeEventListener('resize', align)
     }
     gsap.set(items, { opacity: 0 })
+    const f = useStore.getState().mode === 'mobile' ? 0.65 : 1 // مقدمة أخف وأسرع على الجوال
+    const d = (n: number) => n * f
+    const ov = (n: number) => `-=${n * f}`
     const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
-    tl.to(backdrop, { thread: 1, duration: 3, ease: 'power2.inOut', delay: 0.7 })
-      .fromTo(r.logo.current, { opacity: 0, y: 10, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 1.6 }, '-=1.4')
-      .fromTo(r.kicker.current, { opacity: 0, y: 12, letterSpacing: '0.4em' }, { opacity: 1, y: 0, letterSpacing: '0.12em', duration: 1.8 }, '-=1.1')
-      .fromTo(r.num.current, { opacity: 0, y: 30, clipPath: 'inset(0 0 100% 0)' }, { opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)', duration: 2.2, ease: 'power3.out' }, '-=0.5')
-      .to(backdrop, { pulse: 1, duration: 2 }, '<')
-      .fromTo(r.sub.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 1.6 }, '-=0.6')
-      .fromTo(r.rule.current, { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 1.2 }, '-=0.4')
-      .fromTo(r.slogan.current, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 1.8 }, '-=0.6')
-      .fromTo([r.cta.current, r.credit.current], { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 1.2, stagger: 0.3, onComplete: () => { r.btn.current?.focus({ preventScroll: true }); gsap.to(r.skip.current, { opacity: 0, duration: 0.6, pointerEvents: 'none' }) } }, '-=0.5')
+    tl.to(backdrop, { thread: 1, duration: d(3), ease: 'power2.inOut', delay: d(0.7) })
+      .fromTo(r.logo.current, { opacity: 0, y: 10, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: d(1.6) }, ov(1.4))
+      .fromTo(r.kicker.current, { opacity: 0, y: 12, letterSpacing: '0.4em' }, { opacity: 1, y: 0, letterSpacing: '0.12em', duration: d(1.8) }, ov(1.1))
+      .fromTo(r.num.current, { opacity: 0, y: 30, clipPath: 'inset(0 0 100% 0)' }, { opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)', duration: d(2.2), ease: 'power3.out' }, ov(0.5))
+      .to(backdrop, { pulse: 1, duration: d(2) }, '<')
+      .fromTo(r.sub.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: d(1.6) }, ov(0.6))
+      .fromTo(r.rule.current, { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: d(1.2) }, ov(0.4))
+      .fromTo(r.slogan.current, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: d(1.8) }, ov(0.6))
+      .fromTo([r.cta.current, r.credit.current], { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: d(1.2), stagger: d(0.3), onComplete: () => { r.btn.current?.focus({ preventScroll: true }); gsap.to(r.skip.current, { opacity: 0, duration: 0.6, pointerEvents: 'none' }) } }, ov(0.5))
     tlRef.current = tl
     return () => { tl.kill(); window.removeEventListener('resize', align) }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps

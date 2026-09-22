@@ -71,7 +71,7 @@ export function Backdrop() {
     const u = { res: U('uRes'), time: U('uTime'), mouse: U('uMouse'), top: U('uTop'), mid: U('uMid'), bot: U('uBot'), ridge: U('uRidge'), haze: U('uHaze'), glow: U('uGlow'), horizon: U('uHorizon'), stars: U('uStars'), moon: U('uMoon'), ridges: U('uRidges'), dust: U('uDust'), thread: U('uThread'), threadY: U('uThreadY'), grain: U('uGrain'), pulse: U('uPulse'), bright: U('uBright') }
 
     let cur = fromGrade(grades[backdrop.grade])
-    let quality = mode === 'mobile' ? 0.5 : mode === 'smartboard' ? 0.75 : 1 // معامل الدقة الداخلية
+    let quality = mode === 'mobile' ? 0.4 : mode === 'smartboard' ? 0.75 : 1 // معامل الدقة الداخلية
     let raf = 0
     let last = performance.now()
     let t = 0
@@ -80,7 +80,7 @@ export function Backdrop() {
     let mx = 0
     let my = 0
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, mode === 'mobile' ? 1.25 : 2)
+      const dpr = Math.min(window.devicePixelRatio || 1, mode === 'mobile' ? 1 : 2)
       const cap = 1080 / Math.max(canvas.clientHeight, 1) // سقف داخلي ≈ 1080p (السبورات 4K ضعيفة الرسوميات)
       const s = Math.max(0.4, Math.min(dpr, cap) * quality)
       canvas.width = Math.max(2, Math.floor(canvas.clientWidth * s))
@@ -133,9 +133,12 @@ export function Backdrop() {
       gl.drawArrays(gl.TRIANGLES, 0, 3)
       // ضبط الجودة تلقائيًا: إن تجاوز الإطار 26ms لفترة نخفّض الدقة الداخلية
       if (!red) {
-        if (dt > 0.026) slow++
+        const thresh = mode === 'mobile' ? 0.022 : 0.026
+        if (dt > thresh) slow++
         else slow = Math.max(0, slow - 1)
-        if (slow > 18 && quality > 0.3) { quality *= 0.8; slow = 0; resize() }
+        const trigger = mode === 'mobile' ? 8 : 18
+        const floor = mode === 'mobile' ? 0.22 : 0.3
+        if (slow > trigger && quality > floor) { quality *= 0.8; slow = 0; resize() }
       }
     }
     raf = requestAnimationFrame(frame)
