@@ -520,7 +520,7 @@ export default function Generosity(p: SceneProps) {
         ref={canvas}
         className="vsc-canvas vsc-drag"
         role="img"
-        aria-label="مدخل مجلس عند الغسق: باب مقوّس مضيء، وأمامه صينية عليها خمسة فناجين ودلّة قهوة عربية"
+        aria-label="مدخل مجلس عند الغسق: باب مقوّس مضيء، وأمامه صينية عليها خمسة فناجين ودلّة قهوة سعودية"
         onPointerDown={(e) => { const q = point(e); api.current?.down(q.x, q.y, e.pointerId); ;(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId) }}
         onPointerMove={(e) => { if (e.buttons || e.pointerType === 'touch') { const q = point(e); api.current?.move(q.x, q.y) } }}
         onPointerUp={() => api.current?.up()}

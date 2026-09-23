@@ -135,6 +135,8 @@ const majlisSources: Source[] = [
   { id: 'wiki-bisht-clothing', level: 6, publisher: 'Wikipedia', title: 'Bisht (clothing)', url: 'https://en.wikipedia.org/wiki/Bisht_(clothing)', accessed: '2026-09-22' },
   { id: 'wiki-dallah', level: 6, publisher: 'Wikipedia', title: 'Dallah', url: 'https://en.wikipedia.org/wiki/Dallah', accessed: '2026-09-22' },
   { id: 'alriyadh-dallah', level: 6, publisher: 'جريدة الرياض', title: 'دلة القهوة.. الأصالة والكرم', url: 'https://www.alriyadh.com/2163338', accessed: '2026-09-22' },
+  { id: 'moc-saudi-coffee-year', level: 2, publisher: 'وزارة الثقافة السعودية', title: 'عام القهوة السعودية 2022 — المبادرة الرسمية', url: 'https://engage.moc.gov.sa/year-of-saudi-coffee/?lang=ar', date: '2022', accessed: '2026-09-23' },
+  { id: 'moc-saudi-coffee-rename', level: 2, publisher: 'وزارتا الثقافة والتجارة السعوديتان', title: 'اعتماد اسم «القهوة السعودية» بدلًا من «القهوة العربية» في جميع منافذ البيع بالمملكة', url: 'https://engage.moc.gov.sa/year-of-saudi-coffee/track-911/', accessed: '2026-09-23' },
   { id: 'saudipedia-youth-percentage', level: 2, publisher: 'سعوديبيديا (الموسوعة السعودية) — عن الهيئة العامة للإحصاء', title: 'What is the percentage of youth in the Kingdom?', url: 'https://saudipedia.com/en/what-is-the-percentage-of-youth-in-the-kingdom', accessed: '2026-09-22' },
 ]
 for (const s of majlisSources) sources[s.id] = s

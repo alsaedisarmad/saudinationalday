@@ -26,15 +26,21 @@ const names: Record<string, [string, string]> = {
   jawf: ['منطقة الجوف', 'سكاكا'],
 }
 
-export const regions: Region[] = (mapJson.regions as unknown as Array<{ id: string; d: string; c: [number, number] }>).map((r) => ({
-  id: r.id,
-  nameAr: names[r.id][0],
-  capitalAr: names[r.id][1],
-  d: r.d,
-  c: r.c,
-  status: 'verified',
-  sourceIds: ['saudipedia-provinces', 'geoboundaries'],
-}))
+// ترتيب المناطق الإداري الرسمي الثلاث عشر (نظام المناطق، سعوديبيديا) — لا يتبع ترتيب ملف الحدود الجغرافي
+const order = Object.keys(names)
+
+export const regions: Region[] = (mapJson.regions as unknown as Array<{ id: string; d: string; c: [number, number] }>)
+  .slice()
+  .sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id))
+  .map((r) => ({
+    id: r.id,
+    nameAr: names[r.id][0],
+    capitalAr: names[r.id][1],
+    d: r.d,
+    c: r.c,
+    status: 'verified',
+    sourceIds: ['saudipedia-provinces', 'geoboundaries'],
+  }))
 
 export const mapGeometry = {
   viewBox: mapJson.viewBox as unknown as [number, number, number, number],
