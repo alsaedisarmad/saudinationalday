@@ -322,7 +322,7 @@ const recognition: Station = {
       },
       {
         title: 'التراث الثقافي غير المادي — القائمة التمثيلية',
-        entries: ichSorted.map((e) => ({ year: ar(e.year), title: e.nameAr, text: e.shared ? 'ملف مشترك مع دول عربية' : undefined })),
+        entries: ichSorted.map((e) => ({ year: ar(e.year), title: e.id === 'coffee' ? 'القهوة السعودية' : e.nameAr, text: e.shared ? 'ملف مشترك مع دول عربية' : undefined })),
         sourceIds: ['unesco-ich-sa'],
       },
     ],
