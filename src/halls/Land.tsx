@@ -93,7 +93,7 @@ export default function Land() {
           <g pointerEvents="none">
             {regions.map((r) => (
               <text key={r.id} x={r.c[0]} y={r.c[1]} className={`land__label ${sel && sel !== r.id ? 'is-dim' : ''}`} textAnchor="middle">
-                {r.nameAr.replace('منطقة ', '').replace('المنطقة ', '')}
+                {r.nameAr.replace('المنطقة ', '').replace('منطقة ', '')}
               </text>
             ))}
           </g>
@@ -113,7 +113,7 @@ export default function Land() {
             <p className="body-l">المس منطقة على الخريطة لتقترب منها، أو اخترها من القائمة.</p>
             <ul className="land__chips">
               {regions.map((r) => (
-                <li key={r.id}><button className={`land__chip ${seen(r.id) ? 'is-seen' : ''}`} onClick={() => select(r.id)}>{r.nameAr.replace('منطقة ', '').replace('المنطقة ', '')}</button></li>
+                <li key={r.id}><button className={`land__chip ${seen(r.id) ? 'is-seen' : ''}`} onClick={() => select(r.id)}>{r.nameAr.replace('المنطقة ', '').replace('منطقة ', '')}</button></li>
               ))}
             </ul>
             <details className="land__whc">
