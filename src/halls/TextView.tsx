@@ -202,6 +202,7 @@ export default function TextView() {
             <dt>{credits.preparedBy}</dt><dd>{credits.classes.join(' ، ')}</dd>
             <dt>{credits.schoolLabel}</dt><dd>{credits.school}</dd>
             <dt>{credits.supervisorsLabel}</dt><dd>{credits.supervisors.join(' ، ')}</dd>
+            <dt>{credits.activityLeadersLabel}</dt><dd>{credits.activityLeaders.join(' ، ')}</dd>
             <dt>{credits.principalLabel}</dt><dd>{credits.principal}</dd>
           </dl>
           <p>{aboutText.privacy}</p>

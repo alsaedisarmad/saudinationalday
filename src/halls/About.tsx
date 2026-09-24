@@ -51,6 +51,10 @@ export default function About() {
             <dd className="display-m">{credits.supervisors.join(' ، ')}</dd>
           </div>
           <div>
+            <dt className="label">{credits.activityLeadersLabel}</dt>
+            <dd className="display-m">{credits.activityLeaders.join(' ، ')}</dd>
+          </div>
+          <div>
             <dt className="label">{credits.principalLabel}</dt>
             <dd className="display-m">{credits.principal}</dd>
           </div>
@@ -117,6 +121,7 @@ const css = `
 .ab__lead{max-width:44rem;opacity:.92}
 .ab__credits{margin:var(--s2) 0 0;display:grid;grid-template-columns:1fr 1fr;gap:0 var(--s4);width:100%}
 .ab__credits div{display:grid;gap:0;padding-block:var(--s2);border-top:1px solid rgba(201,164,92,.25)}
+.ab__credits div:last-child:nth-child(odd){grid-column:1/-1}
 .ab__credits dt{color:var(--sand);letter-spacing:.04em}
 .ab__credits dd{margin:0;color:var(--museum-white)}
 .ab__slogan{font-family:var(--font-display);font-weight:700;color:var(--gold);font-size:clamp(22px,3vmin,44px)}

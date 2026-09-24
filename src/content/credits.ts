@@ -6,6 +6,8 @@ export const credits = {
   school: 'الثانوية السادسة والثلاثون',
   supervisorsLabel: 'بإشراف المعلمتين',
   supervisors: ['منى الزلفي', 'فاطمه الطلحي'],
+  activityLeadersLabel: 'رائدات النشاط',
+  activityLeaders: ['مفيدة المشاري', 'عزيزة السفياني'],
   principalLabel: 'مديرة المدرسة',
   principal: 'آمال باربود',
   status: 'verified' as const,
